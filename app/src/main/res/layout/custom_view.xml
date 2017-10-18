@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="4dp"
+    card_view:cardMaxElevation="6dp"
+    card_view:contentPadding="5dp"
+    android:layout_margin="3dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            />
+        <TextView
+            android:id="@+id/app_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:layout_toRightOf="@id/iv_icon"
+            android:layout_toEndOf="@id/iv_icon"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingLeft="10dp"
+            />
+        <TextView
+            android:id="@+id/app_package"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#848484"
+            android:layout_below="@id/app_label"
+            android:layout_toRightOf="@id/iv_icon"
+            android:layout_toEndOf="@id/iv_icon"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="italic"
+            android:paddingLeft="10dp"
+            />
+        <ImageView
+            android:id="@+id/openinapp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_system"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
