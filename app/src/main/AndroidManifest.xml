@@ -15,6 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AppInfoClass"
+            android:label="@string/app_details"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

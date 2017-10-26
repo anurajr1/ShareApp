@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
@@ -16,7 +17,10 @@ import android.support.v4.content.ContextCompat;
 
 import com.anu.developers3k.shareapp.R;
 
+import java.io.File;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AppsManager {
@@ -87,4 +91,40 @@ public class AppsManager {
         }
         return label;
     }
+
+    public long getApplicationInstllationTime(String packagename){
+
+        PackageManager pm = mContext.getPackageManager();
+        long installed=0;
+        try {
+            ApplicationInfo appInfo = pm.getApplicationInfo(packagename, 0);
+            String appFile = appInfo.sourceDir;
+            installed = new File(appFile).lastModified(); //Epoch Time
+        }catch(Exception e){
+
+        }
+        return installed;
+    }
+
+    public Date installTimeFromPackageManager(
+             String packageName) {
+        try {
+            PackageManager pm = mContext.getPackageManager();
+            PackageInfo info = pm.getPackageInfo(packageName, 0);
+            Field field = PackageInfo.class.getField("firstInstallTime");
+            long timestamp = field.getLong(info);
+            return new Date(timestamp);
+        } catch (PackageManager.NameNotFoundException e) {
+            return null; // package not found
+        } catch (IllegalAccessException e) {
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalArgumentException e) {
+        } catch (SecurityException e) {
+        }
+        // field wasn't found
+        return null;
+    }
+
+
+
 }

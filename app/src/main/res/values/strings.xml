@@ -7,4 +7,6 @@
     <string name="version">Version 1.0</string>
 
     <string name="exit_msg">Please click BACK again to exit.</string>
+
+    <string name="app_details">Application Details</string>
 </resources>
