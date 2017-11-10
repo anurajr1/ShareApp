@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/transitions_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 <RelativeLayout
@@ -100,6 +101,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:id="@+id/relid"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/app_margin_size"
             android:layout_marginRight="@dimen/app_margin_size"
@@ -151,18 +153,27 @@
                 android:layout_alignLeft="@+id/content_main_root_check_image_12"
                 android:layout_alignStart="@+id/content_main_root_check_image_12" />
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/relid"
+            android:layout_marginLeft="@dimen/app_margin_size"
+            android:layout_marginRight="@dimen/app_margin_size"
+            android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+            android:background="@color/colorPrimaryDark"
 
+            />
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/linearid"
-        android:layout_marginLeft="@dimen/app_margin_size"
-        android:layout_marginRight="@dimen/app_margin_size"
-        android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
-        android:background="@color/colorPrimaryDark"
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_below="@+id/linearid"-->
+        <!--android:layout_marginLeft="@dimen/app_margin_size"-->
+        <!--android:layout_marginRight="@dimen/app_margin_size"-->
+        <!--android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"-->
+        <!--android:background="@color/colorPrimaryDark"-->
 
-        />
+        <!--/>-->
 </RelativeLayout>
 </ScrollView>
