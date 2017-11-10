@@ -28,6 +28,7 @@
         android:text="App Name"
         android:textSize="25dp"
         android:gravity="center"
+        android:textColor="@color/appTextColor"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -58,14 +59,15 @@
                 android:layout_alignParentLeft="true"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="@dimen/text_size"
-                android:text="Version Name"/>
+                android:text="Version Name"
+                android:textColor="@color/appTextColor"/>
             <TextView
                 android:id="@+id/text_versionname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size"
+                android:textSize="@dimen/text_size_value"
                 android:layout_below="@+id/text1"
                 android:text="1.000"
                 android:gravity="center"
@@ -78,14 +80,15 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:textSize="@dimen/text_size"
-                android:text="Version Code"/>
+                android:text="Version Code"
+                android:textColor="@color/appTextColor"/>
             <TextView
                 android:id="@+id/text_versioncode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size"
+                android:textSize="@dimen/text_size_value"
                 android:layout_below="@+id/content_main_root_check_image_1"
                 android:text="1.000"
                 android:gravity="center"
@@ -110,14 +113,15 @@
                 android:layout_alignParentLeft="true"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="@dimen/text_size"
-                android:text="Installation Time"/>
+                android:text="Installation Time"
+                android:textColor="@color/appTextColor"/>
             <TextView
                 android:id="@+id/text_versionname1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size"
+                android:textSize="@dimen/text_size_value"
                 android:layout_below="@+id/text2"
                 android:text="1.000"
                 android:gravity="center"
@@ -130,14 +134,15 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:textSize="@dimen/text_size"
-                android:text="Update Time"/>
+                android:text="Update Time"
+                android:textColor="@color/appTextColor"/>
             <TextView
                 android:id="@+id/text_versioncode1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size"
+                android:textSize="@dimen/text_size_value"
                 android:layout_below="@+id/content_main_root_check_image_12"
                 android:text="1.000"
                 android:gravity="center"

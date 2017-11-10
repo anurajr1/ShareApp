@@ -112,6 +112,27 @@ public class AppsManager {
             PackageManager pm = mContext.getPackageManager();
             PackageInfo info = pm.getPackageInfo(packageName, 0);
             Field field = PackageInfo.class.getField("firstInstallTime");
+
+            long timestamp = field.getLong(info);
+            return new Date(timestamp);
+        } catch (PackageManager.NameNotFoundException e) {
+            return null; // package not found
+        } catch (IllegalAccessException e) {
+        } catch (NoSuchFieldException e) {
+        } catch (IllegalArgumentException e) {
+        } catch (SecurityException e) {
+        }
+        // field wasn't found
+        return null;
+    }
+
+    public Date lastUpdateTimeFromPackageManager(
+            String packageName) {
+        try {
+            PackageManager pm = mContext.getPackageManager();
+            PackageInfo info = pm.getPackageInfo(packageName, 0);
+            Field field = PackageInfo.class.getField("lastUpdateTime");
+
             long timestamp = field.getLong(info);
             return new Date(timestamp);
         } catch (PackageManager.NameNotFoundException e) {

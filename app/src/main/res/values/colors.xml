@@ -3,4 +3,6 @@
     <color name="colorPrimary">#2593E5</color>
     <color name="colorPrimaryDark">#2593E5</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="appTextColor">#464445</color>
 </resources>

@@ -1,14 +1,11 @@
 package com.anu.developers3k.shareapp;
 
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.anu.developers3k.shareapp.adapter.AppsManager;
 
@@ -29,40 +26,40 @@ public class AppInfoClass extends AppCompatActivity {
         // Get the current app label
         String label = appsManager.getApplicationLabelByPackageName(packageName);
 
+        //app name printing
         TextView appname = (TextView)findViewById(R.id.textView);
         appname.setText(label);
 
-        //Drawable appicon = appsManager.getAppIconByPackageName(packageName);
-
+        //app icon
         ImageView appnameicon = (ImageView)findViewById(R.id.imageView);
         appnameicon.setImageDrawable(appsManager.getAppIconByPackageName(packageName));
 
 
-        appsManager.getApplicationInstllationTime(packageName);
-        appsManager.installTimeFromPackageManager(packageName);
+        //first install time
+        TextView firstInstallTime = (TextView)findViewById(R.id.text_versionname1);
+        firstInstallTime.setText((appsManager.installTimeFromPackageManager(packageName).toString()));
 
+        //update date time
+        TextView updateTime = (TextView)findViewById(R.id.text_versioncode1);
+        updateTime.setText((appsManager.lastUpdateTimeFromPackageManager(packageName)).toString());
 
-
-
-
-
-
-
-
-
-
-
+        String versionName = "";
+        int versionCode = 0;
         try {
             final PackageManager pm = getPackageManager();
-            ApplicationInfo app = this.getPackageManager().getApplicationInfo(packageName, 0);
-
-          //  Drawable icon = PackageManager.getApplicationIcon(app);
-          //  String name = PackageManager.getApplicationLabel(app);
-          //  return icon;
-        } catch (PackageManager.NameNotFoundException e) {
-            Toast toast = Toast.makeText(this, "error in getting icon", Toast.LENGTH_SHORT);
-            toast.show();
-            e.printStackTrace();
+            versionName = pm.getPackageInfo(packageName, 0).versionName;
+            versionCode = pm.getPackageInfo(packageName, 0).versionCode;
+        }catch(Exception e){
+            System.out.print("inside the error block");
         }
+        //version name
+        TextView versionNametextView = (TextView)findViewById(R.id.text_versionname);
+        versionNametextView.setText(versionName);
+
+        //version code
+        TextView versionCodeTextView = (TextView)findViewById(R.id.text_versioncode);
+        versionCodeTextView.setText(Integer.toString(versionCode));
+
+
     }
 }

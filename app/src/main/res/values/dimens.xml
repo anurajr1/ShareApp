@@ -5,7 +5,8 @@
     <dimen name="content_main_table_row_min_height">24dp</dimen>
     <dimen name="content_main_table_row_margin_bottom">8dp</dimen>
 
-    <dimen name="text_size">20dp</dimen>
+    <dimen name="text_size">18dp</dimen>
+    <dimen name="text_size_value">16dp</dimen>
 
     <dimen name="app_margin_size">15dp</dimen>
 </resources>
