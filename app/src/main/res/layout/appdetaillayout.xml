@@ -165,15 +165,44 @@
             />
 
     </LinearLayout>
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_below="@+id/linearid"-->
-        <!--android:layout_marginLeft="@dimen/app_margin_size"-->
-        <!--android:layout_marginRight="@dimen/app_margin_size"-->
-        <!--android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"-->
-        <!--android:background="@color/colorPrimaryDark"-->
 
-        <!--/>-->
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp"
+        card_view:cardMaxElevation="6dp"
+        card_view:contentPadding="5dp"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/linearid"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        >
+        <TextView
+            android:id="@+id/permissionlisttextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/linearid"
+            android:layout_alignStart="@+id/linearid"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:textSize="@dimen/text_size"
+            android:textColor="@color/appTextColor"
+            android:text="Permission List"
+             />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/device_list"
+            android:scrollbars="none"
+            android:paddingLeft="20dp"
+            android:paddingTop="35dp"
+            android:paddingRight="20dp"/>
+
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
 </ScrollView>

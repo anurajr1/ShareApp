@@ -88,7 +88,8 @@ public class AppInfoClass extends AppCompatActivity {
 
 
 
-
+        //fetching the permission list
+        appsManager.fetchDetail(packageName);
 
 
         new Handler().postDelayed(new Runnable() {

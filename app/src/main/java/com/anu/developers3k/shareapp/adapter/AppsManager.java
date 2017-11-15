@@ -12,14 +12,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 
 
 import com.anu.developers3k.shareapp.R;
+import com.anu.developers3k.shareapp.models.AppDetails;
 
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -146,6 +149,35 @@ public class AppsManager {
         return null;
     }
 
-
+    //fetching the permission list of app
+    public AppDetails fetchDetail(String packageName) {
+        PackageManager packageManager = mContext.getPackageManager();
+        AppDetails appDetails = new AppDetails();
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName,
+                    PackageManager.GET_META_DATA | PackageManager.GET_PERMISSIONS);
+            appDetails.name = packageInfo.applicationInfo.loadLabel(packageManager).toString();
+            appDetails.icon = packageInfo.applicationInfo.loadIcon(packageManager);
+            appDetails.packageName = packageName;
+            if (packageInfo.requestedPermissions != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    for (int index = 0; index < packageInfo.requestedPermissions.length; index++) {
+                        if ((packageInfo.requestedPermissionsFlags[index]
+                                & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0) {
+                            appDetails.grantedPermissionList.add(packageInfo.requestedPermissions[index]);
+                        } else {
+                            appDetails.deniedPermissionList.add(packageInfo.requestedPermissions[index]);
+                        }
+                    }
+                } else {
+                    appDetails.grantedPermissionList =
+                            new ArrayList<>(Arrays.asList(packageInfo.requestedPermissions));
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return appDetails;
+    }
 
 }
