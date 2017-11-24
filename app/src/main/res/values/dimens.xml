@@ -9,4 +9,5 @@
     <dimen name="text_size_value">16dp</dimen>
 
     <dimen name="app_margin_size">15dp</dimen>
+    <dimen name="app_detail_size">15dp</dimen>
 </resources>

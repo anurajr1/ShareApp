@@ -13,17 +13,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/appTextColor"
         android:layout_weight="1"
+        android:text="Permission"
         android:fontFamily="sans-serif-condensed"
+        android:textSize="@dimen/app_detail_size"
          />
     <TextView
         android:id="@+id/deviceinfo_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:textColor="@color/colorAccent"
-        android:layout_weight="1"
+        android:layout_weight="0.30"
+        android:text="Allowed"
+        android:textSize="@dimen/app_detail_size"
         android:fontFamily="sans-serif-condensed"/>
     </LinearLayout>
 </RelativeLayout>

@@ -194,14 +194,29 @@
             android:textColor="@color/appTextColor"
             android:text="Permission List"
              />
+        <TextView
+            android:id="@+id/permission_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/linearid"
+            android:layout_alignStart="@+id/linearid"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="30dp"
+            android:textSize="@dimen/text_size"
+            android:text="No permission required for this App"
+            android:textColor="@color/allowedColor"
+            android:visibility="gone"
+            />
+
         <ListView
+            android:id="@+id/device_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/device_list"
-            android:scrollbars="none"
             android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:paddingTop="35dp"
-            android:paddingRight="20dp"/>
+            android:scrollbars="none" />
 
     </android.support.v7.widget.CardView>
 </RelativeLayout>

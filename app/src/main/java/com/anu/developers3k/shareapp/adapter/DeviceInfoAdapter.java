@@ -1,10 +1,13 @@
 package com.anu.developers3k.shareapp.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anu.developers3k.shareapp.R;
@@ -42,6 +45,7 @@ public class DeviceInfoAdapter extends ArrayAdapter {
     {
         TextView DEVICENAME;
         TextView DEVICEVALUE;
+        ImageView imageView;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -66,6 +70,12 @@ public class DeviceInfoAdapter extends ArrayAdapter {
         DeviceInfoManager FR = (DeviceInfoManager) getItem(position);
         holder.DEVICENAME.setText(FR.getDeviceinfoname());
         holder.DEVICEVALUE.setText(FR.getDeviceinfovalue());
+        if(FR.getDeviceinfovalue().equalsIgnoreCase("Denied")){
+            holder.DEVICEVALUE.setTextColor(Color.RED);
+        }
+        else{
+            holder.DEVICEVALUE.setTextColor(ContextCompat.getColor(getContext(), R.color.allowedColor));
+        }
         return row;
 
 
