@@ -6,4 +6,7 @@
 
     <color name="appTextColor">#464445</color>
     <color name="allowedColor">#1ca620</color>
+
+    <color name="piebackground">#d6d6d6</color>
+    <color name="whitecolor">#ffffff</color>
 </resources>

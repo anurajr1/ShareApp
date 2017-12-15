@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 public class AppsManager {
-    private Context mContext;
+    private static Context mContext;
     public AppsManager(Context context){
         mContext = context;
     }
@@ -178,6 +178,11 @@ public class AppsManager {
             e.printStackTrace();
         }
         return appDetails;
+    }
+    public static long getApkSize(String packageName)
+            throws PackageManager.NameNotFoundException {
+        return new File(mContext.getPackageManager().getApplicationInfo(
+                packageName, 0).publicSourceDir).length();
     }
 
 }

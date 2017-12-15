@@ -40,4 +40,7 @@ dependencies {
 
     //animation
     compile "com.andkulikov:transitionseverywhere:1.7.7"
+
+    //chart
+    compile 'com.github.zurche:plain-pie:v0.2.2'
 }

@@ -2,222 +2,254 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:plainpie="http://schemas.android.com/apk/res-auto"
     android:id="@+id/transitions_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true">
-<RelativeLayout
-    android:layout_width="match_parent" android:layout_height="match_parent">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/relative">
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_marginTop="15dp"
-        android:text="App Name"
-        android:textSize="25dp"
-        android:gravity="center"
-        android:textColor="@color/appTextColor"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="App Name"
+                android:textColor="@color/appTextColor"
+                android:textSize="25dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relative"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:layout_marginLeft="@dimen/app_margin_size"
+                android:layout_marginRight="@dimen/app_margin_size"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Version Name"
+                    android:textColor="@color/appTextColor"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/text_versionname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/text1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignRight="@+id/text1"
+                    android:layout_below="@+id/text1"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:text="1.000"
+                    android:textSize="@dimen/text_size_value" />
+
+                <TextView
+                    android:id="@+id/content_main_root_check_image_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Version Code"
+                    android:textColor="@color/appTextColor"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/text_versioncode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/text1"
+                    android:layout_alignLeft="@+id/content_main_root_check_image_1"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@+id/text1"
+                    android:layout_alignStart="@+id/content_main_root_check_image_1"
+                    android:layout_below="@+id/content_main_root_check_image_1"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:text="1.000"
+                    android:textSize="@dimen/text_size_value" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:layout_marginLeft="@dimen/app_margin_size"
+                android:layout_marginRight="@dimen/app_margin_size"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Installation Time"
+                    android:textColor="@color/appTextColor"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/text_versionname1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/text2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignRight="@+id/text2"
+                    android:layout_below="@+id/text2"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:text="1.000"
+                    android:textSize="@dimen/text_size_value" />
+
+                <TextView
+                    android:id="@+id/content_main_root_check_image_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Update Time"
+                    android:textColor="@color/appTextColor"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/text_versioncode1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/text2"
+                    android:layout_alignLeft="@+id/content_main_root_check_image_12"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@+id/text2"
+                    android:layout_alignStart="@+id/content_main_root_check_image_12"
+                    android:layout_below="@+id/content_main_root_check_image_12"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:text="1.000"
+                    android:textSize="@dimen/text_size_value" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/relid"
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:layout_marginLeft="@dimen/app_margin_size"
+                android:layout_marginRight="@dimen/app_margin_size"
+                android:background="@color/colorPrimaryDark"
+
+                />
+
+        </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/linearchart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearid">
+
+        <az.plainpie.PieView
+            android:id="@+id/pieView1"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            plainpie:inner_pie_padding="30"
+            plainpie:inner_text_visibility="true"
+            plainpie:percentage="100"
+            plainpie:percentage_size="20" />
     </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/linearid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="5dp"
-        android:layout_below="@+id/relative"
-        android:orientation="vertical">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/app_margin_size"
-            android:layout_marginRight="@dimen/app_margin_size"
-            android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
-            android:minHeight="@dimen/content_main_table_row_min_height">
+            android:layout_below="@+id/linearchart"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="4dp"
+            card_view:cardMaxElevation="6dp"
+            card_view:contentPadding="5dp">
 
             <TextView
+                android:id="@+id/permissionlisttextview"
                 android:layout_width="wrap_content"
-                android:id="@+id/text1"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:fontFamily="sans-serif-condensed"
+                android:layout_alignLeft="@+id/linearid"
+                android:layout_alignStart="@+id/linearid"
+                android:layout_marginLeft="19dp"
+                android:layout_marginStart="19dp"
+                android:text="Permission List"
+                android:textColor="@color/appTextColor"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/permission_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/linearid"
+                android:layout_alignStart="@+id/linearid"
+                android:layout_marginLeft="19dp"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="30dp"
+                android:text="No permission required for this App"
+                android:textColor="@color/allowedColor"
                 android:textSize="@dimen/text_size"
-                android:text="Version Name"
-                android:textColor="@color/appTextColor"/>
-            <TextView
-                android:id="@+id/text_versionname"
-                android:layout_width="wrap_content"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size_value"
-                android:layout_below="@+id/text1"
-                android:text="1.000"
-                android:gravity="center"
-                android:layout_alignRight="@+id/text1"
-                android:layout_alignEnd="@+id/text1" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/content_main_root_check_image_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textSize="@dimen/text_size"
-                android:text="Version Code"
-                android:textColor="@color/appTextColor"/>
-            <TextView
-                android:id="@+id/text_versioncode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size_value"
-                android:layout_below="@+id/content_main_root_check_image_1"
-                android:text="1.000"
-                android:gravity="center"
-                android:layout_alignRight="@+id/text1"
-                android:layout_alignEnd="@+id/text1"
-                android:layout_alignLeft="@+id/content_main_root_check_image_1"
-                android:layout_alignStart="@+id/content_main_root_check_image_1" />
-        </RelativeLayout>
+                <ListView
+                    android:id="@+id/device_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="35dp"
+                    android:scrollbars="none" />
+            </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:id="@+id/relid"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/app_margin_size"
-            android:layout_marginRight="@dimen/app_margin_size"
-            android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
-            android:minHeight="@dimen/content_main_table_row_min_height">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:id="@+id/text2"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size"
-                android:text="Installation Time"
-                android:textColor="@color/appTextColor"/>
-            <TextView
-                android:id="@+id/text_versionname1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size_value"
-                android:layout_below="@+id/text2"
-                android:text="1.000"
-                android:gravity="center"
-                android:layout_alignRight="@+id/text2"
-                android:layout_alignEnd="@+id/text2" />
-
-            <TextView
-                android:id="@+id/content_main_root_check_image_12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textSize="@dimen/text_size"
-                android:text="Update Time"
-                android:textColor="@color/appTextColor"/>
-            <TextView
-                android:id="@+id/text_versioncode1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="@dimen/text_size_value"
-                android:layout_below="@+id/content_main_root_check_image_12"
-                android:text="1.000"
-                android:gravity="center"
-                android:layout_alignRight="@+id/text2"
-                android:layout_alignEnd="@+id/text2"
-                android:layout_alignLeft="@+id/content_main_root_check_image_12"
-                android:layout_alignStart="@+id/content_main_root_check_image_12" />
-        </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/relid"
-            android:layout_marginLeft="@dimen/app_margin_size"
-            android:layout_marginRight="@dimen/app_margin_size"
-            android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
-            android:background="@color/colorPrimaryDark"
-
-            />
-
-    </LinearLayout>
-
-
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="4dp"
-        card_view:cardMaxElevation="6dp"
-        card_view:contentPadding="5dp"
-        android:layout_margin="5dp"
-        android:layout_below="@+id/linearid"
-        android:foreground="?attr/selectableItemBackground"
-        android:clickable="true"
-        >
-        <TextView
-            android:id="@+id/permissionlisttextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/linearid"
-            android:layout_alignStart="@+id/linearid"
-            android:layout_marginLeft="19dp"
-            android:layout_marginStart="19dp"
-            android:textSize="@dimen/text_size"
-            android:textColor="@color/appTextColor"
-            android:text="Permission List"
-             />
-        <TextView
-            android:id="@+id/permission_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/linearid"
-            android:layout_alignStart="@+id/linearid"
-            android:layout_marginLeft="19dp"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="30dp"
-            android:textSize="@dimen/text_size"
-            android:text="No permission required for this App"
-            android:textColor="@color/allowedColor"
-            android:visibility="gone"
-            />
-
-        <ListView
-            android:id="@+id/device_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="35dp"
-            android:scrollbars="none" />
-
-    </android.support.v7.widget.CardView>
-</RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
 </ScrollView>

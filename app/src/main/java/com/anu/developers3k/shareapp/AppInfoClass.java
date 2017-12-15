@@ -7,27 +7,30 @@ import android.os.Handler;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import com.anu.developers3k.shareapp.adapter.AppsManager;
 import com.anu.developers3k.shareapp.adapter.DeviceInfoAdapter;
 import com.anu.developers3k.shareapp.adapter.DeviceInfoManager;
+import com.anu.developers3k.shareapp.helper.Helper;
 import com.transitionseverywhere.Fade;
 import com.transitionseverywhere.TransitionManager;
 import com.transitionseverywhere.TransitionSet;
 import com.transitionseverywhere.extra.Scale;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import az.plainpie.PieView;
+import az.plainpie.animation.PieAngleAnimation;
 
 
 /**
@@ -58,7 +61,6 @@ public class AppInfoClass extends AppCompatActivity {
         //app icon
         ImageView appnameicon = (ImageView)findViewById(R.id.imageView);
         appnameicon.setImageDrawable(appsManager.getAppIconByPackageName(packageName));
-
 
         //first install time
         final TextView firstInstallTime = (TextView)findViewById(R.id.text_versionname1);
@@ -104,22 +106,6 @@ public class AppInfoClass extends AppCompatActivity {
         grantedList = appsManager.fetchDetail(packageName).grantedPermissionList;
         deniedList = appsManager.fetchDetail(packageName).deniedPermissionList;
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                boolean visible=true;
-                TransitionSet set = new TransitionSet()
-                        .addTransition(new Scale(0.7f))
-                        .addTransition(new Fade())
-                        .setInterpolator(visible ? new LinearOutSlowInInterpolator() :
-                                new FastOutLinearInInterpolator());
-                TransitionManager.beginDelayedTransition(transitionsContainer, set);
-                layoutDetail.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
-            }
-        }, SPLASH_TIME_OUT);
-
-
         //grantedList.
         HashMap<String, String> hmap = new HashMap<String, String>();
 
@@ -132,6 +118,8 @@ public class AppInfoClass extends AppCompatActivity {
 
         //on click on list view
         ListView lst = (ListView) findViewById(R.id.device_list);
+    //    setListViewHeightBasedOnChildren(lst);
+
         DeviceInfoAdapter adapter = new DeviceInfoAdapter(getApplicationContext(), R.layout.deviceinfolayout);
         lst.setAdapter(adapter);
 
@@ -148,15 +136,82 @@ public class AppInfoClass extends AppCompatActivity {
             TextView txtmsg = (TextView)findViewById(R.id.permission_msg);
             txtmsg.setVisibility(View.VISIBLE);
         }
-//        lst.setOnTouchListener(new View.OnTouchListener() {
-//
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if (event.getAction() == MotionEvent.ACTION_MOVE) {
-//                    return true; // Indicates that this has been handled by you and will not be forwarded further.
-//                }
-//                return false;
-//            }
-//        });
 
+        //setting the listview fully expanded inside the scrollview
+        Helper.getListViewSize(lst);
+
+        //running the pop up animation of App details
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // This method will be executed once the timer is over
+                boolean visible=true;
+                TransitionSet set = new TransitionSet()
+                        .addTransition(new Scale(0.7f))
+                        .addTransition(new Fade())
+                        .setInterpolator(visible ? new LinearOutSlowInInterpolator() :
+                                new FastOutLinearInInterpolator());
+                TransitionManager.beginDelayedTransition(transitionsContainer, set);
+                layoutDetail.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+            }
+        }, SPLASH_TIME_OUT);
+
+//        //pie chart
+//        PieView animatedPie = (PieView) findViewById(R.id.pieView1);
+//
+//        //set the percentage value in chart
+//        animatedPie.setPercentage(50);
+//        //set the percentage graph
+//        animatedPie.setPieAngle(70);
+//
+//        PieAngleAnimation animation = new PieAngleAnimation(animatedPie);
+//        animation.setDuration(1000); //This is the duration of the animation in millis
+//        animatedPie.startAnimation(animation);
+//
+//        // Change the color fill of the background of the widget, by default is transparent
+//        animatedPie.setMainBackgroundColor(getResources().getColor(R.color.piebackground));
+//
+//        // Change the color fill of the bar representing the current percentage
+//        animatedPie.setPercentageBackgroundColor(getResources().getColor(R.color.myCustomColor));
+//
+//        //pie background color
+//
+//        // Change the color of the text of the widget
+//
+//        animatedPie.setTextColor(getResources().getColor(R.color.myCustomColor));
+
+        PieView pieView = (PieView) findViewById(R.id.pieView1);
+        PieAngleAnimation animation = new PieAngleAnimation(pieView);
+        animation.setDuration(1000); //This is the duration of the animation in millis
+        pieView.startAnimation(animation);
+
+        String sizevalue = null;
+        try {
+            long size = appsManager.getApkSize(packageName);
+            sizevalue = getStringSizeLengthFile(size);
+        }catch (Exception e){
+        }
+        pieView.setInnerText("Size: \n"+sizevalue);
+
+    }
+
+    public static String getStringSizeLengthFile(long size) {
+
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        float sizeKb = 1024.0f;
+        float sizeMo = sizeKb * sizeKb;
+        float sizeGo = sizeMo * sizeKb;
+        float sizeTerra = sizeGo * sizeKb;
+
+
+        if(size < sizeMo)
+            return df.format(size / sizeKb)+ " Kb";
+        else if(size < sizeGo)
+            return df.format(size / sizeMo) + " Mb";
+        else if(size < sizeTerra)
+            return df.format(size / sizeGo) + " Gb";
+
+        return "";
     }
 }
