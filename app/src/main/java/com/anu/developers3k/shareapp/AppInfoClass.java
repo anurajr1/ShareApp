@@ -45,6 +45,10 @@ public class AppInfoClass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appdetaillayout);
 
+        this.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_left);
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         final ViewGroup transitionsContainer = (ViewGroup) findViewById(R.id.transitions_container);
 
         Intent intent = getIntent();
@@ -171,8 +175,7 @@ public class AppInfoClass extends AppCompatActivity {
 //        // Change the color fill of the background of the widget, by default is transparent
 //        animatedPie.setMainBackgroundColor(getResources().getColor(R.color.piebackground));
 //
-//        // Change the color fill of the bar representing the current percentage
-//        animatedPie.setPercentageBackgroundColor(getResources().getColor(R.color.myCustomColor));
+
 //
 //        //pie background color
 //
@@ -180,10 +183,14 @@ public class AppInfoClass extends AppCompatActivity {
 //
 //        animatedPie.setTextColor(getResources().getColor(R.color.myCustomColor));
 
+
         PieView pieView = (PieView) findViewById(R.id.pieView1);
         PieAngleAnimation animation = new PieAngleAnimation(pieView);
         animation.setDuration(1000); //This is the duration of the animation in millis
         pieView.startAnimation(animation);
+
+        // Change the color fill of the bar representing the current percentage
+        pieView.setPercentageBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         String sizevalue = null;
         try {
@@ -195,23 +202,25 @@ public class AppInfoClass extends AppCompatActivity {
 
     }
 
+    //get human readable value for the apk file
     public static String getStringSizeLengthFile(long size) {
-
         DecimalFormat df = new DecimalFormat("0.00");
-
         float sizeKb = 1024.0f;
         float sizeMo = sizeKb * sizeKb;
         float sizeGo = sizeMo * sizeKb;
         float sizeTerra = sizeGo * sizeKb;
-
-
         if(size < sizeMo)
-            return df.format(size / sizeKb)+ " Kb";
+            return df.format(size / sizeKb)+ " KiB";
         else if(size < sizeGo)
-            return df.format(size / sizeMo) + " Mb";
+            return df.format(size / sizeMo) + " MiB";
         else if(size < sizeTerra)
-            return df.format(size / sizeGo) + " Gb";
-
+            return df.format(size / sizeGo) + " GiB";
         return "";
+    }
+    //closing the current screen by clicking the cross button
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish(); // close this activity as oppose to navigating up
+        return false;
     }
 }

@@ -28,6 +28,7 @@ import java.util.List;
 
 public class AppsManager {
     private static Context mContext;
+    static List<ApplicationInfo> packages;
     public AppsManager(Context context){
         mContext = context;
     }
@@ -184,5 +185,25 @@ public class AppsManager {
         return new File(mContext.getPackageManager().getApplicationInfo(
                 packageName, 0).publicSourceDir).length();
     }
+
+    public long getAppApkSize(String packageName) {
+        PackageManager packageManager = mContext.getPackageManager();
+        packages = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+        long apkSize = 0;
+        for (ApplicationInfo packageInfo : packages) {
+            if ((((ApplicationInfo) packageInfo).packageName).equalsIgnoreCase(packageName)) {
+                //name = packageInfo.packageName;
+                //Drawable icon = packageManager.getApplicationIcon(packageInfo);
+               // String apkPath = packageInfo.sourceDir;
+                apkSize = new File(packageInfo.sourceDir).length();
+            }
+        }
+        return apkSize;
+    }
+
+
+
+
+
 
 }

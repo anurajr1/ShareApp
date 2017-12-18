@@ -19,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
@@ -192,7 +192,8 @@
             plainpie:inner_pie_padding="30"
             plainpie:inner_text_visibility="true"
             plainpie:percentage="100"
-            plainpie:percentage_size="20" />
+            plainpie:percentage_size="18"
+            />
     </RelativeLayout>
 
         <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -217,7 +218,7 @@
                 android:layout_alignStart="@+id/linearid"
                 android:layout_marginLeft="19dp"
                 android:layout_marginStart="19dp"
-                android:text="Permission List"
+                android:text="Permission List:"
                 android:textColor="@color/appTextColor"
                 android:textSize="@dimen/text_size" />
 
