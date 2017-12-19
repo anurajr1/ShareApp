@@ -272,18 +272,18 @@
             android:id="@+id/fab4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_aboutus_white"/>
+            android:src="@drawable/ic_google_play"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_aboutus_white"/>
+            android:src="@drawable/ic_share_apk"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_aboutus_white"/>
+            android:src="@drawable/ic_backup"/>
         </com.github.clans.fab.FloatingActionMenu>
     </android.support.design.widget.CoordinatorLayout>

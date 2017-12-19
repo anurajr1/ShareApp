@@ -2,6 +2,7 @@ package com.anu.developers3k.shareapp;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
@@ -17,6 +18,8 @@ import com.anu.developers3k.shareapp.adapter.AppsManager;
 import com.anu.developers3k.shareapp.adapter.DeviceInfoAdapter;
 import com.anu.developers3k.shareapp.adapter.DeviceInfoManager;
 import com.anu.developers3k.shareapp.helper.Helper;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.transitionseverywhere.Fade;
 import com.transitionseverywhere.TransitionManager;
 import com.transitionseverywhere.TransitionSet;
@@ -160,29 +163,6 @@ public class AppInfoClass extends AppCompatActivity {
             }
         }, SPLASH_TIME_OUT);
 
-//        //pie chart
-//        PieView animatedPie = (PieView) findViewById(R.id.pieView1);
-//
-//        //set the percentage value in chart
-//        animatedPie.setPercentage(50);
-//        //set the percentage graph
-//        animatedPie.setPieAngle(70);
-//
-//        PieAngleAnimation animation = new PieAngleAnimation(animatedPie);
-//        animation.setDuration(1000); //This is the duration of the animation in millis
-//        animatedPie.startAnimation(animation);
-//
-//        // Change the color fill of the background of the widget, by default is transparent
-//        animatedPie.setMainBackgroundColor(getResources().getColor(R.color.piebackground));
-//
-
-//
-//        //pie background color
-//
-//        // Change the color of the text of the widget
-//
-//        animatedPie.setTextColor(getResources().getColor(R.color.myCustomColor));
-
 
         PieView pieView = (PieView) findViewById(R.id.pieView1);
         PieAngleAnimation animation = new PieAngleAnimation(pieView);
@@ -199,6 +179,75 @@ public class AppInfoClass extends AppCompatActivity {
         }catch (Exception e){
         }
         pieView.setInnerText("Size: \n"+sizevalue);
+
+
+
+        FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.fab_menu);
+        fabMenu.setMenuButtonColorNormalResId(R.color.colorPrimary);
+        fabMenu.setMenuButtonColorPressed(R.color.colorPrimaryDark);
+        fabMenu.setMenuButtonColorRippleResId(R.color.colorPrimaryDark);
+
+        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fab1);
+        fab1.setColorNormalResId(R.color.colorPrimary);
+        fab1.setColorPressedResId(R.color.colorPrimaryDark);
+
+        FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab2.setColorNormalResId(R.color.colorPrimary);
+        fab2.setColorPressedResId(R.color.colorPrimaryDark);
+
+//        FloatingActionButton fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+//        fab3.setColorNormalResId(R.color.colorPrimary);
+//        fab3.setColorPressedResId(R.color.colorPrimaryDark);
+
+        FloatingActionButton fab4 = (FloatingActionButton) findViewById(R.id.fab4);
+        fab4.setColorNormalResId(R.color.colorPrimary);
+        fab4.setColorPressedResId(R.color.colorPrimaryDark);
+
+        //click listner for all the fab items
+        fab1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.anu.developers3k.sensoroid"));
+                startActivity(browserIntent);
+            }
+        });
+
+        fab2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Download From Playstore :-) \n"+"https://play.google.com/store/apps/details?id=com.anu.developers3k.sensoroid";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Spread word");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            }
+        });
+
+//        fab3.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+////                intent = new Intent(MainActivity.this, SettingsActivity.class);
+////                mContext.startActivity(intent);
+//                Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+//                MainActivity.this.startActivity(myIntent);
+//            }
+//        });
+
+        fab4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+
+
+
+
+
 
     }
 
