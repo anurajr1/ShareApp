@@ -43,4 +43,7 @@ dependencies {
 
     //chart
     compile 'com.github.zurche:plain-pie:v0.2.2'
+
+    //FAM button
+    compile 'com.github.clans:fab:1.6.4'
 }
