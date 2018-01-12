@@ -35,7 +35,7 @@ public class SystemAppsFragment extends Fragment {
     private Context mContext;
     private RelativeLayout mRelativeLayout;
     private RecyclerView.Adapter mAdapter;
-    private List<String> mDataSet =  new ArrayList<String>();
+    private List<String> mDataSet = null;
     View rootView;
     public SystemAppsFragment(){}
     @Override
@@ -43,6 +43,7 @@ public class SystemAppsFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.systemappslayout, container, false);
 
+        mDataSet =  new ArrayList<String>();
         // Get the application context
         mContext = rootView.getContext();
         mRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.srl);
