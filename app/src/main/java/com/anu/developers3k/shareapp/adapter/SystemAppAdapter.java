@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.anu.developers3k.shareapp.AppInfoClass;
 import com.anu.developers3k.shareapp.R;
 
 import java.util.List;
@@ -75,20 +76,16 @@ public class SystemAppAdapter extends RecyclerView.Adapter<SystemAppAdapter.View
         // Set the current app icon
         holder.mImageViewIcon.setImageDrawable(icon);
 
-        //color of open in app changes according to the theme
-     //   holder.mImageOpenInApp.setColorFilter(ContextCompat.getColor(mContext,R.color.colorTheme));
 
         // Set a click listener on the open in app image view
-        holder.mImageOpenInApp.setOnClickListener(new View.OnClickListener(){
+        holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                // Get the intent to launch the specified application
-                Intent intent = mContext.getPackageManager().getLaunchIntentForPackage(packageName);
-                if (intent != null) {
-                    mContext.startActivity(intent);
-                } else {
-                    Toast.makeText(mContext, packageName + " Launch Error.", Toast.LENGTH_SHORT).show();
-                }
+                System.out.print(packageName);
+                Intent i = new Intent(mContext.getApplicationContext(), AppInfoClass.class);
+                i.putExtra("packagename", packageName);
+                mContext.startActivity(i);
+
             }
         });
 
