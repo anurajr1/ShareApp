@@ -243,8 +243,14 @@ public class AppInfoClass extends AppCompatActivity {
         fab4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6807300839110548631"));
-                startActivity(browserIntent);
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6807300839110548631"));
+//                startActivity(browserIntent);
+                //open the PlayStore page of the given app
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
+                } catch (android.content.ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName)));
+                }
             }
         });
     }
