@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 26
@@ -48,8 +49,14 @@ dependencies {
     compile 'com.github.clans:fab:1.6.4'
 
     //ad
-    compile 'com.google.firebase:firebase-ads:10.2.0'
-    compile 'com.google.android.gms:play-services-ads:10.2.0'
+    compile 'com.google.firebase:firebase-ads:11.8.0'
+    compile 'com.google.android.gms:play-services-ads:11.8.0'
+
+    //For Crashlytics SDK
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+    }
+    compile 'com.google.firebase:firebase-core:11.8.0'
 }
 // Add to the bottom of the file
 apply plugin: 'com.google.gms.google-services'
