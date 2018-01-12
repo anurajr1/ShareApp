@@ -5,7 +5,6 @@ package com.anu.developers3k.shareapp;
  */
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,10 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-
 import com.anu.developers3k.shareapp.adapter.AppsManager;
 import com.anu.developers3k.shareapp.adapter.InstalledAppAdapter;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -34,12 +31,14 @@ public class UserAppsFragment extends Fragment {
     private RelativeLayout mRelativeLayout;
     private RecyclerView.Adapter mAdapter;
     View rootView;
-    private List<String> mDataSet =  new ArrayList<String>();
+    private List<String> mDataSet =  null;
     public UserAppsFragment(){}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.userappslayout, container, false);
+
+        mDataSet =  new ArrayList<String>();
         // Get the application context
         mContext = rootView.getContext();
         mRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.rl);
