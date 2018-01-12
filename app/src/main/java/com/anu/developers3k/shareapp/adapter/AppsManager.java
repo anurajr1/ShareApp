@@ -237,7 +237,7 @@ public class AppsManager {
                 final SaveApp saveApp = new SaveApp();
                 try {
                     String dst = saveApp.extractWithoutRoot(infos);
-                    Toast.makeText(mContext, "App Saved Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "App Backup Successfully", Toast.LENGTH_SHORT).show();
                     return;
                 } catch (Exception ex) {
                     ex.printStackTrace();
