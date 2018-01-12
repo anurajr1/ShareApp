@@ -13,4 +13,6 @@
     <string name="share_apk_dialog_title">Share APK</string>
 
     <string name="permissionError">Please enable the permission to use this functionality</string>
+
+    <string name="interstitial_ad">ca-app-pub-1249878644185613/2578770967</string>
 </resources>

@@ -10,6 +10,10 @@ import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,11 +21,18 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
 
+    private InterstitialAd mInterstitialAd;
+
+    boolean isActivityIsVisible = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-1249878644185613~6737507827");
 
         //setup the bottom tab
         setupBottomTab();
@@ -54,7 +65,64 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // set the ad unit ID
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad));
+
+        AdRequest adRequestinter = new AdRequest.Builder()
+                .addTestDevice("")
+                .build();
+
+        // Load ads into Interstitial Ads
+        mInterstitialAd.loadAd(adRequestinter);
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showInterstitial();
+                    }
+                }, 40000);
+            }
+        });
+
+
+
+
+
+
+
     }
+
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            if (isActivityIsVisible) {
+                mInterstitialAd.show();
+            }
+        }
+    }
+
+    /** Called when leaving the activity */
+    @Override
+    public void onPause() {
+        super.onPause();
+        isActivityIsVisible = false;
+    }
+
+    /** Called when returning to the activity */
+    @Override
+    public void onResume() {
+        super.onResume();
+        isActivityIsVisible = true;
+    }
+
+    /** Called before the activity is destroyed */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
 
 
 

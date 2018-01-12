@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "383231539226",
+    "firebase_url": "https://shareapp-ee946.firebaseio.com",
+    "project_id": "shareapp-ee946",
+    "storage_bucket": "shareapp-ee946.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383231539226:android:3a33798cc5001335",
+        "android_client_info": {
+          "package_name": "com.anu.developers3k.shareapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383231539226-raqijb8r3av7n2dfn5ihqc178otta625.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7GCh-COvtSAEAY6hNLmZ-f8KZGRNFfKU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

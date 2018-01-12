@@ -81,7 +81,7 @@ public class SystemAppAdapter extends RecyclerView.Adapter<SystemAppAdapter.View
         holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                System.out.print(packageName);
+                //System.out.print(packageName);
                 Intent i = new Intent(mContext.getApplicationContext(), AppInfoClass.class);
                 i.putExtra("packagename", packageName);
                 mContext.startActivity(i);

@@ -46,4 +46,10 @@ dependencies {
 
     //FAM button
     compile 'com.github.clans:fab:1.6.4'
+
+    //ad
+    compile 'com.google.firebase:firebase-ads:10.2.0'
+    compile 'com.google.android.gms:play-services-ads:10.2.0'
 }
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'
