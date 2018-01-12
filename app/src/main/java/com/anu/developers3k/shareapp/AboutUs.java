@@ -24,8 +24,11 @@ public class AboutUs extends Fragment {
         rateApp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.anu.developers3k.shareapp"));
-                startActivity(browserIntent);
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.anu.developers3k.shareapp")));
+                } catch (android.content.ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.anu.developers3k.shareapp")));
+                }
             }
         });
 
@@ -33,8 +36,11 @@ public class AboutUs extends Fragment {
         moreApp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6807300839110548631"));
-                startActivity(browserIntent);
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://dev?id=6807300839110548631")));
+                } catch (android.content.ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6807300839110548631")));
+                }
             }
         });
 
