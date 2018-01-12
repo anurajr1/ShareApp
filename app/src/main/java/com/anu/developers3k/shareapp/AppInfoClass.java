@@ -1,19 +1,24 @@
 package com.anu.developers3k.shareapp;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.anu.developers3k.shareapp.adapter.AppsManager;
 import com.anu.developers3k.shareapp.adapter.DeviceInfoAdapter;
 import com.anu.developers3k.shareapp.adapter.DeviceInfoManager;
@@ -24,20 +29,19 @@ import com.transitionseverywhere.Fade;
 import com.transitionseverywhere.TransitionManager;
 import com.transitionseverywhere.TransitionSet;
 import com.transitionseverywhere.extra.Scale;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
 import az.plainpie.PieView;
 import az.plainpie.animation.PieAngleAnimation;
+import static android.content.ContentValues.TAG;
 
 
 /**
- * Created by i321994 on 25/10/17.
+ * Created by i321994 on 12/01/18.
  */
 
 public class AppInfoClass extends AppCompatActivity {
@@ -55,9 +59,9 @@ public class AppInfoClass extends AppCompatActivity {
         final ViewGroup transitionsContainer = (ViewGroup) findViewById(R.id.transitions_container);
 
         Intent intent = getIntent();
-        String packageName = intent.getStringExtra("packagename");
+        final String packageName = intent.getStringExtra("packagename");
 
-        AppsManager appsManager = new AppsManager(getApplicationContext());
+        final AppsManager appsManager = new AppsManager(getApplicationContext());
         // Get the current app label
         String label = appsManager.getApplicationLabelByPackageName(packageName);
 
@@ -187,18 +191,17 @@ public class AppInfoClass extends AppCompatActivity {
         fabMenu.setMenuButtonColorPressed(R.color.colorPrimaryDark);
         fabMenu.setMenuButtonColorRippleResId(R.color.colorPrimaryDark);
 
+        //fab for apk share
         FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.fab1);
         fab1.setColorNormalResId(R.color.colorPrimary);
         fab1.setColorPressedResId(R.color.colorPrimaryDark);
 
+        //fab for apk backup
         FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         fab2.setColorNormalResId(R.color.colorPrimary);
         fab2.setColorPressedResId(R.color.colorPrimaryDark);
 
-//        FloatingActionButton fab3 = (FloatingActionButton) findViewById(R.id.fab3);
-//        fab3.setColorNormalResId(R.color.colorPrimary);
-//        fab3.setColorPressedResId(R.color.colorPrimaryDark);
-
+        //fab more apps in google play
         FloatingActionButton fab4 = (FloatingActionButton) findViewById(R.id.fab4);
         fab4.setColorNormalResId(R.color.colorPrimary);
         fab4.setColorPressedResId(R.color.colorPrimaryDark);
@@ -207,48 +210,43 @@ public class AppInfoClass extends AppCompatActivity {
         fab1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.anu.developers3k.sensoroid"));
-                startActivity(browserIntent);
+                //checking run time permissions for android M and higher versions
+                if(isStoragePermissionGranted()){
+                    //sharing the apk file
+                    try {
+                        appsManager.shareApk(packageName);
+                    }catch (Exception e){
+                        System.out.print("apk Share failed!!");
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), R.string.permissionError, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         fab2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String shareBody = "Download From Playstore :-) \n"+"https://play.google.com/store/apps/details?id=com.anu.developers3k.sensoroid";
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Spread word");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                if(isStoragePermissionGranted()){
+                    //backup the apk file
+                    try {
+                        appsManager.saveApk(packageName);
+                    }catch (Exception e){
+                        System.out.print("apk Extraction failed!!");
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), R.string.permissionError, Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-//        fab3.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-////                intent = new Intent(MainActivity.this, SettingsActivity.class);
-////                mContext.startActivity(intent);
-//                Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
-//                MainActivity.this.startActivity(myIntent);
-//            }
-//        });
 
         fab4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6807300839110548631"));
+                startActivity(browserIntent);
             }
         });
-
-
-
-
-
-
-
-
-
     }
 
     //get human readable value for the apk file
@@ -272,4 +270,25 @@ public class AppInfoClass extends AppCompatActivity {
         finish(); // close this activity as oppose to navigating up
         return false;
     }
+
+    //run time permissions for Android M and higher versions
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG,"Permission is granted");
+                return true;
+            } else {
+
+                Log.v(TAG,"Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG,"Permission is granted");
+            return true;
+        }
+    }
+
 }

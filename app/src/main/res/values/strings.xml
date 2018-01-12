@@ -9,4 +9,8 @@
     <string name="exit_msg">Please click BACK again to exit.</string>
 
     <string name="app_details">Application Details</string>
+
+    <string name="share_apk_dialog_title">Share APK</string>
+
+    <string name="permissionError">Please enable the permission to use this functionality</string>
 </resources>

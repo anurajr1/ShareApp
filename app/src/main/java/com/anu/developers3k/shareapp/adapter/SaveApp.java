@@ -15,7 +15,8 @@ public class SaveApp {
 	public String extractWithoutRoot(ApplicationInfo info) throws Exception {
 		File src = new File(info.sourceDir);
 		File dst;
-		 dst =new File(Environment.getExternalStorageDirectory()+ "/Share-Apk/"+ info.packageName + ".apk");
+
+		 dst =new File(Environment.getExternalStorageDirectory()+ "/ShareApp/"+ info.packageName + ".apk");
 
 		dst = buildDstPath(dst);
 		try {
@@ -31,7 +32,7 @@ public class SaveApp {
 
 	public String extractWithRoot(ApplicationInfo info) throws Exception {
 		File src = new File(info.sourceDir);
-		String root = Environment.getExternalStorageDirectory()+ "/Share-Apk/"+ info.packageName + ".apk";
+		String root = Environment.getExternalStorageDirectory()+ "/ShareApp/"+ info.packageName + ".apk";
 		File dst = buildDstPath(new File(root));
 
 		Process p = null;
