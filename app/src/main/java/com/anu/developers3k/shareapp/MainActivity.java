@@ -66,26 +66,26 @@ public class MainActivity extends AppCompatActivity {
 
 
         // set the ad unit ID
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad));
-
-        AdRequest adRequestinter = new AdRequest.Builder()
-                .addTestDevice("")
-                .build();
-
-        // Load ads into Interstitial Ads
-        mInterstitialAd.loadAd(adRequestinter);
-
-        mInterstitialAd.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        showInterstitial();
-                    }
-                }, 40000);
-            }
-        });
+//        mInterstitialAd = new InterstitialAd(this);
+//        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad));
+//
+//        AdRequest adRequestinter = new AdRequest.Builder()
+//                .addTestDevice("0734E2A0ABE27259EB989FD962AEA8C7")
+//                .build();
+//
+//        // Load ads into Interstitial Ads
+//        mInterstitialAd.loadAd(adRequestinter);
+//
+//        mInterstitialAd.setAdListener(new AdListener() {
+//            public void onAdLoaded() {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        showInterstitial();
+//                    }
+//                }, 10000);
+//            }
+//        });
 
 
 

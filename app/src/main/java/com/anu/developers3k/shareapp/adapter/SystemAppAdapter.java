@@ -16,12 +16,18 @@ import android.widget.Toast;
 
 import com.anu.developers3k.shareapp.AppInfoClass;
 import com.anu.developers3k.shareapp.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.List;
 
 public class SystemAppAdapter extends RecyclerView.Adapter<SystemAppAdapter.ViewHolder> {
     private Context mContext;
     public List<String> mDataSet;
+
+    int clickNumber = 0;
+    private InterstitialAd mInterstitialAd;
 
     public SystemAppAdapter(Context context, List<String> list){
         mContext = context;
@@ -56,7 +62,7 @@ public class SystemAppAdapter extends RecyclerView.Adapter<SystemAppAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // Initialize a new instance of SystemAppsManager class
-        SystemAppsManager SystemAppsManager = new SystemAppsManager(mContext);
+        final SystemAppsManager SystemAppsManager = new SystemAppsManager(mContext);
 
         // Get the current package name
         final String packageName = (String) mDataSet.get(position);
@@ -81,6 +87,27 @@ public class SystemAppAdapter extends RecyclerView.Adapter<SystemAppAdapter.View
         holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                if(clickNumber<=2){
+                    clickNumber++;
+                }else if(clickNumber>=4) {
+                        System.out.print("No Ads will shown");
+                }else{
+                    clickNumber=4;
+                    // set the ad unit ID
+                    mInterstitialAd = new InterstitialAd(mContext);
+                    mInterstitialAd.setAdUnitId("ca-app-pub-1249878644185613/2578770967");
+
+                    AdRequest adRequestinter = new AdRequest.Builder()
+                            .addTestDevice("0734E2A0ABE27259EB989FD962AEA8C7")
+                            .build();
+                    // Load ads into Interstitial Ads
+                    mInterstitialAd.loadAd(adRequestinter);
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        public void onAdLoaded() {
+                            mInterstitialAd.show();
+                        }
+                    });
+                }
                 //System.out.print(packageName);
                 Intent i = new Intent(mContext.getApplicationContext(), AppInfoClass.class);
                 i.putExtra("packagename", packageName);

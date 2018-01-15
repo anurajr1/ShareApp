@@ -14,13 +14,17 @@ import android.widget.TextView;
 
 import com.anu.developers3k.shareapp.AppInfoClass;
 import com.anu.developers3k.shareapp.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.List;
 public class InstalledAppAdapter extends RecyclerView.Adapter<InstalledAppAdapter.ViewHolder> {
     private Context mContext;
     private List<String> mDataSet;
 
-
+    int clickNumber = 0;
+    private InterstitialAd mInterstitialAd;
 
     public InstalledAppAdapter(Context context, List<String> list){
         mContext = context;
@@ -88,6 +92,29 @@ public class InstalledAppAdapter extends RecyclerView.Adapter<InstalledAppAdapte
         holder.mCardView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                if(clickNumber<=1){
+                    clickNumber++;
+                }else if(clickNumber>=3) {
+                    System.out.print("No Ads will shown");
+                }else{
+                    clickNumber=3;
+                    // show add here
+
+                    // set the ad unit ID
+                    mInterstitialAd = new InterstitialAd(mContext);
+                    mInterstitialAd.setAdUnitId("ca-app-pub-1249878644185613/2578770967");
+
+                    AdRequest adRequestinter = new AdRequest.Builder()
+                            .addTestDevice("0734E2A0ABE27259EB989FD962AEA8C7")
+                            .build();
+                    // Load ads into Interstitial Ads
+                    mInterstitialAd.loadAd(adRequestinter);
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        public void onAdLoaded() {
+                            mInterstitialAd.show();
+                        }
+                    });
+                }
                 //System.out.print(packageName);
                 Intent i = new Intent(mContext.getApplicationContext(), AppInfoClass.class);
                 i.putExtra("packagename", packageName);
