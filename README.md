@@ -5,55 +5,41 @@ App for easy backup and share of the apk. Also ShareApp provide a detail overvie
  ## Store
 <a href='https://play.google.com/store/apps/details?id=com.anu.developers3k.shareapp'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png' height="83" width="215" /></a>
 
-## Build
-
-[![image](https://github.wdf.sap.corp/storage/user/21882/files/d5759346-7f76-11e8-9c87-87a78b02be8f)](https://xmake-mobile-dev.wdf.sap.corp/job/default/job/I321994-com.sap.icc.csd-master-CI-dockerrun/)
-
-## SiRIUS
-
-[![image](https://github.wdf.sap.corp/storage/user/21882/files/7dad24cc-84fc-11e8-8114-0fd74371b969)](https://ifp.wdf.sap.corp/sirius/index.html#/program/EA2A86DC28790741EBF93259749C8DF9)
 
 ## Scope
 
-Would you like to leverage an SAP platform technology, for example for big data-analysis, mobile user experience, business intelligence, or backend-integration for your business application in the cloud or on-premise? Are you interested in finding a solution in any of those technologies, a particular industry or line-of-business? The certified solutions directory will make it easy for you to find suitable candidates for your specific needs.
-Website link – already made available to public
+ShareApp is the one stop solution for APK Backup and Share. You can easily backup or share the installed apps. Also ShareApp provide details about all the installed app in your mobile device. 
 
-https://www.sap.com/dmc/exp/2013_09_adpd/enEN/#/solutions
+You can explore the..
 
-#### Current use case: Building Android mobile app based on above link. 
-* Mobile App will provide a better User Interface and a handy application to the end user.
-* End User can directly contact the partners with ease.
-* Easily search the partners 
-* Easily send mails to ICC and Co-innovated mail box
-* Detail list of all the companies certified for particular certification scenario with description.
-* Company logo's
-* Listing of "SAP partner logo" along with all the details of companies like email, contact number, website and more
-* Certified logo's with certification details
-* Live data from the back-end system
-
-#### Mobile Application Colors are based on SAP branding standard.
-https://www.sapbrandtools.com/color-palette/#palette-details
-
-#### Mobile Application images are from SAP brand Libary
-https://www.sapbrandtools.com/imagelibrary/index.html#/
-
-#### Application Naming Approval
-https://www.sapbrandtools.com/naming-center/#/requests/7229
+★ APK Backup
+★ Share APK
+★ Simple User Interface
+★ System and User Apps Listings
+★ Package Names
+★ Version Name of App
+★ Version Code 
+★ Installation time of the App
+★ Update Time 
+★ APK Size
+★ Detail App Permission's list
+★ Allowed and Denied Permission's
+★ Google Play page of installed Apps
+★ Easy Navigation
+★ No Root Required
 
 
 ## What's New
 
 #### Version 1.1
 ```
-★ New Live data service added
-★ Can navigate to CSD website page for more details
+★ Share feature of apk added
+★ Graph to show the application size.
 ```
-#### Version 1.0.9
+#### Version 1.0
 ```
-★ Initial verison of the Android App
-★ All the certification details with detail company information.
-★ Contact information of certified companies.
-★ Local data storage
+★ Initial verison of ShareApp
+★ All installed applications details.
 ```
 ## High level Diagram:
 ![image](https://github.wdf.sap.corp/storage/user/21882/files/8987a082-7f76-11e8-9c5c-a071a1f15536)
