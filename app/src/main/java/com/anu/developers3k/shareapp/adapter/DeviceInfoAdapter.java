@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by I321994
+ * Created by Anuraj R(a4anurajr@gmail.com)
  */
 public class DeviceInfoAdapter extends ArrayAdapter {
     private List list= new ArrayList();

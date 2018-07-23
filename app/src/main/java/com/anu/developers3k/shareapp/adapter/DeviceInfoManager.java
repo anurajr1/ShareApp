@@ -1,7 +1,7 @@
 package com.anu.developers3k.shareapp.adapter;
 
 /**
- * Created by I321994
+ * Created by Anuraj R(a4anurajr@gmail.com)
  */
 public class DeviceInfoManager {
     private String deviceinfoname;
