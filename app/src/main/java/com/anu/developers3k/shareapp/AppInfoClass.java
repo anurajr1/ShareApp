@@ -41,7 +41,7 @@ import static android.content.ContentValues.TAG;
 
 
 /**
- * Created by i321994 on 12/01/18.
+ * Created by Anuraj R(a4anurajr@gmail.com) on 12/01/18.
  */
 
 public class AppInfoClass extends AppCompatActivity {
