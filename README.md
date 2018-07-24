@@ -12,7 +12,7 @@ ShareApp is the one stop solution for APK Backup and Share. You can easily backu
 
 You can explore the..
 
-★ APK Backup
+★ APK Backup </br>
 ★ Share APK
 ★ Simple User Interface
 ★ System and User Apps Listings
@@ -33,7 +33,7 @@ You can explore the..
 
 #### Version 1.1
 ```
-★ Share feature of apk added
+★ apk share feature added
 ★ Graph to show the application size.
 ```
 #### Version 1.0
