@@ -13,20 +13,20 @@ ShareApp is the one stop solution for APK Backup and Share. You can easily backu
 You can explore the..
 
 ★ APK Backup </br>
-★ Share APK
-★ Simple User Interface
-★ System and User Apps Listings
-★ Package Names
-★ Version Name of App
-★ Version Code 
-★ Installation time of the App
-★ Update Time 
-★ APK Size
-★ Detail App Permission's list
-★ Allowed and Denied Permission's
-★ Google Play page of installed Apps
-★ Easy Navigation
-★ No Root Required
+★ Share APK</br>
+★ Simple User Interface</br>
+★ System and User Apps Listings</br>
+★ Package Names</br>
+★ Version Name of App</br>
+★ Version Code </br>
+★ Installation time of the App</br>
+★ Update Time </br>
+★ APK Size</br>
+★ Detail App Permission's list</br>
+★ Allowed and Denied Permission's</br>
+★ Google Play page of installed Apps</br>
+★ Easy Navigation</br>
+★ No Root Required</br>
 
 
 ## What's New
