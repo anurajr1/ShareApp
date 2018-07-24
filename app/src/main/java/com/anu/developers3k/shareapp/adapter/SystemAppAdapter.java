@@ -95,10 +95,10 @@ public class SystemAppAdapter extends RecyclerView.Adapter<SystemAppAdapter.View
                     clickNumber=4;
                     // set the ad unit ID
                     mInterstitialAd = new InterstitialAd(mContext);
-                    mInterstitialAd.setAdUnitId("ca-app-pub-1249878644185613/2578770967");
+                    mInterstitialAd.setAdUnitId("");
 
                     AdRequest adRequestinter = new AdRequest.Builder()
-                            .addTestDevice("0734E2A0ABE27259EB989FD962AEA8C7")
+                            .addTestDevice("")
                             .build();
                     // Load ads into Interstitial Ads
                     mInterstitialAd.loadAd(adRequestinter);
