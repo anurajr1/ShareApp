@@ -3,8 +3,8 @@ package com.anu.developers3k.shareapp.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,6 @@ import com.anu.developers3k.shareapp.AppInfoClass;
 import com.anu.developers3k.shareapp.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.List;
 public class InstalledAppAdapter extends RecyclerView.Adapter<InstalledAppAdapter.ViewHolder> {
@@ -24,7 +23,6 @@ public class InstalledAppAdapter extends RecyclerView.Adapter<InstalledAppAdapte
     private List<String> mDataSet;
 
     int clickNumber = 0;
-    private InterstitialAd mInterstitialAd;
 
     public InstalledAppAdapter(Context context, List<String> list){
         mContext = context;
@@ -100,20 +98,7 @@ public class InstalledAppAdapter extends RecyclerView.Adapter<InstalledAppAdapte
                     clickNumber=3;
                     // show add here
 
-                    // set the ad unit ID
-                    mInterstitialAd = new InterstitialAd(mContext);
-                    mInterstitialAd.setAdUnitId("");
 
-                    AdRequest adRequestinter = new AdRequest.Builder()
-                            .addTestDevice("")
-                            .build();
-                    // Load ads into Interstitial Ads
-                    mInterstitialAd.loadAd(adRequestinter);
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        public void onAdLoaded() {
-                            mInterstitialAd.show();
-                        }
-                    });
                 }
                 //System.out.print(packageName);
                 Intent i = new Intent(mContext.getApplicationContext(), AppInfoClass.class);

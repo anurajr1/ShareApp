@@ -2,17 +2,14 @@ package com.anu.developers3k.shareapp;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
 
-    private InterstitialAd mInterstitialAd;
-
     boolean isActivityIsVisible = true;
 
     @Override
@@ -30,9 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(getApplicationContext(), "");
 
         //setup the bottom tab
         setupBottomTab();
@@ -70,14 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
-
-    private void showInterstitial() {
-        if (mInterstitialAd.isLoaded()) {
-            if (isActivityIsVisible) {
-                mInterstitialAd.show();
-            }
-        }
     }
 
     /** Called when leaving the activity */
