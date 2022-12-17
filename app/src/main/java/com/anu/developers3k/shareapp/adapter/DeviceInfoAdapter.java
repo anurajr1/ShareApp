@@ -77,8 +77,5 @@ public class DeviceInfoAdapter extends ArrayAdapter {
             holder.DEVICEVALUE.setTextColor(ContextCompat.getColor(getContext(), R.color.allowedColor));
         }
         return row;
-
-
     }
-
 }
