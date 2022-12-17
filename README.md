@@ -31,6 +31,10 @@ You can explore the..
 
 ## What's New
 
+#### Version 2.0
+```
+★ Updated the SDK
+```
 #### Version 1.1
 ```
 ★ apk share feature added
