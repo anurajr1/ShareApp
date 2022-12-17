@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,13 +54,6 @@ public class MainActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int arg0) {
             }
         });
-
-
-
-
-
-
-
     }
 
     /** Called when leaving the activity */
@@ -83,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
     }
-
-
-
 
     private void setupBottomTab(){
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);

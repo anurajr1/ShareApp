@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 import com.anu.developers3k.shareapp.AppInfoClass;
 import com.anu.developers3k.shareapp.R;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 
 import java.util.List;
 
