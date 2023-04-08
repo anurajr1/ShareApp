@@ -4,7 +4,7 @@ android {
     compileSdkVersion 33
     defaultConfig {
         applicationId "com.anu.developers3k.shareapp"
-        minSdkVersion 21
+        minSdkVersion 25
         targetSdkVersion 33
         versionCode 2
         versionName "2.0.0"
@@ -25,13 +25,14 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
     testImplementation 'junit:junit:4.13.2'
     //botton easy navigation tab
     implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
 
     // RecyclerView
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
 
     // CardView
     implementation 'androidx.cardview:cardview:1.0.0'
