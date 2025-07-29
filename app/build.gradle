@@ -6,7 +6,7 @@ android {
         applicationId "com.anu.developers3k.shareapp"
         minSdkVersion 23
         targetSdkVersion 36
-        versionCode 3
+        versionCode 4
         versionName "2.1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
