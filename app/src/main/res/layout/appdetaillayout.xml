@@ -3,14 +3,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto">
+    android:fitsSystemWindows="true"
+    android:background="?attr/colorPrimary">
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:plainpie="http://schemas.android.com/apk/res-auto"
     android:id="@+id/transitions_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:background="@color/whitecolor"
     >
 
     <RelativeLayout

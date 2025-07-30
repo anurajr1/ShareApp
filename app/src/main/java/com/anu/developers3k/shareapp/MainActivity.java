@@ -8,12 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.anu.developers3k.shareapp.bottomNavigation.BottomNavigation;
+import com.anu.developers3k.shareapp.bottomNavigation.BottomNavigationItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AHBottomNavigation bottomNavigation;
+    private BottomNavigation bottomNavigation;
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
 
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         //setup the bottom tab
         setupBottomTab();
-        bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+        bottomNavigation = (BottomNavigation) findViewById(R.id.bottom_navigation);
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
@@ -77,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupBottomTab(){
-        bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+        bottomNavigation = (BottomNavigation) findViewById(R.id.bottom_navigation);
 
         // Create items
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.user_text, R.drawable.ic_user, R.color.colorPrimary);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.system_text, R.drawable.ic_system, R.color.colorPrimary);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.about, R.drawable.ic_aboutus_white, R.color.colorPrimary);
+        BottomNavigationItem item1 = new BottomNavigationItem(R.string.user_text, R.drawable.ic_user, R.color.colorPrimary);
+        BottomNavigationItem item2 = new BottomNavigationItem(R.string.system_text, R.drawable.ic_system, R.color.colorPrimary);
+        BottomNavigationItem item3 = new BottomNavigationItem(R.string.about, R.drawable.ic_aboutus_white, R.color.colorPrimary);
 
         // Add items
         bottomNavigation.addItem(item1);
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setForceTint(true);
 
         //bottomNavigation.setTitleState(AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE);
-        bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        bottomNavigation.setTitleState(BottomNavigation.TitleState.ALWAYS_SHOW);
         //    bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
 
         // Use colored navigation with circle reveal effect
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setCurrentItem(0);
 
         // Set listeners
-        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+        bottomNavigation.setOnTabSelectedListener(new BottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
                 // Do something cool here...
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        bottomNavigation.setOnNavigationPositionListener(new AHBottomNavigation.OnNavigationPositionListener() {
+        bottomNavigation.setOnNavigationPositionListener(new BottomNavigation.OnNavigationPositionListener() {
             @Override
             public void onPositionChange(int y) {
                 // Manage the new y position
