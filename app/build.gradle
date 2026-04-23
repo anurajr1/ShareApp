@@ -4,7 +4,7 @@ android {
     compileSdkVersion 36
     defaultConfig {
         applicationId "com.anu.developers3k.shareapp"
-        minSdkVersion 23
+        minSdkVersion 29
         targetSdkVersion 36
         versionCode 5
         versionName "3.0.0"

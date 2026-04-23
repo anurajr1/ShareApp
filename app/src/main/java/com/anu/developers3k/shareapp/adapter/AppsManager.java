@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import androidx.core.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -234,13 +235,21 @@ public class AppsManager {
             if ((((ApplicationInfo) packageInfo).packageName).equalsIgnoreCase(packageName)) {
                 //apkPath = packageInfo.sourceDir;
                 final ApplicationInfo infos= packageInfo;
-                final SaveApp saveApp = new SaveApp();
+                final SaveApp saveApp = new SaveApp(mContext); // Pass context to SaveApp
                 try {
-                    String dst = saveApp.extractWithoutRoot(infos);
-                    Toast.makeText(mContext, "App Backup Successfully", Toast.LENGTH_SHORT).show();
+                    String dst = saveApp.extractWithMediaStore(infos); // Use MediaStore method
+                    Toast.makeText(mContext, "APK backed up successfully to Downloads", Toast.LENGTH_SHORT).show();
                     return;
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Log.e("SaveApp", "MediaStore backup failed", ex);
+                    // Fallback to legacy method for older Android versions
+                    try {
+                        String dst = saveApp.extractWithoutRoot(infos);
+                        Toast.makeText(mContext, "App Backup Successfully", Toast.LENGTH_SHORT).show();
+                        return;
+                    } catch (Exception legacyEx) {
+                        Log.e("SaveApp", "Legacy backup failed", legacyEx);
+                    }
                 }
                 new AlertDialog.Builder(mContext)
                         .setTitle("ShareApp")
