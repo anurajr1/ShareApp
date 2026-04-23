@@ -79,6 +79,7 @@ public class InstalledAppAdapter extends RecyclerView.Adapter<InstalledAppAdapte
 
         // Set the current app icon
         holder.mImageViewIcon.setImageDrawable(icon);
+        holder.mImageViewIcon.setContentDescription(label);
 
         //color of open in app changes according to the theme
       //  holder.mImageOpenInApp.setColorFilter(ContextCompat.getColor(mContext,R.color.colorTheme));
@@ -105,8 +106,10 @@ public class InstalledAppAdapter extends RecyclerView.Adapter<InstalledAppAdapte
 
             }
         });
-
-       // holder.bind(list.get(position), listener);
+        
+        // Set proper content descriptions for accessibility
+        holder.mCardView.setContentDescription(label);
+        holder.mImageOpenInApp.setContentDescription(mContext.getString(R.string.open_app_description) + ": " + label);
 
 
     }

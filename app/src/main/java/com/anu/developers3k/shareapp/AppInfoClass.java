@@ -47,6 +47,10 @@ import static android.content.ContentValues.TAG;
 public class AppInfoClass extends AppCompatActivity {
     PackageManager pm = null;
     private static int SPLASH_TIME_OUT = 400;
+    private static final int STORAGE_PERMISSION_CODE = 100;
+    private String pendingPackageName = null;
+    private int pendingActionType = 0; // 0: none, 1: share, 2: backup
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,7 @@ public class AppInfoClass extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String packageName = intent.getStringExtra("packagename");
+        pendingPackageName = packageName;
 
         final AppsManager appsManager = new AppsManager(getApplicationContext());
         // Get the current app label
@@ -210,16 +215,30 @@ public class AppInfoClass extends AppCompatActivity {
         fab1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //checking run time permissions for android M and higher versions
-                if(isStoragePermissionGranted()){
-                    //sharing the apk file
+                // Handle share based on Android version
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (isStoragePermissionGranted()) {
+                        // Permission already granted, share directly
+                        final AppsManager appsManager = new AppsManager(getApplicationContext());
+                        try {
+                            appsManager.shareApk(packageName);
+                        } catch (Exception e) {
+                            Log.e(TAG, "APK Share failed!!", e);
+                            Toast.makeText(getApplicationContext(), "Share failed", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        // Request permission first
+                        pendingActionType = 1; // Mark as share action pending
+                        requestStoragePermission();
+                    }
+                } else {
+                    // For older Android versions, permission is granted automatically
+                    final AppsManager appsManager = new AppsManager(getApplicationContext());
                     try {
                         appsManager.shareApk(packageName);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         System.out.print("apk Share failed!!");
                     }
-                }else{
-                    Toast.makeText(getApplicationContext(), R.string.permissionError, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -227,15 +246,54 @@ public class AppInfoClass extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(isStoragePermissionGranted()){
-                    //backup the apk file
+                // Handle backup based on Android version
+                if (canBackupWithoutPermissions()) {
+                    // Android 11+: Try backup without permissions first (MediaStore)
+                    final AppsManager appsManager = new AppsManager(getApplicationContext());
                     try {
                         appsManager.saveApk(packageName);
-                    }catch (Exception e){
+                        Toast.makeText(getApplicationContext(), "APK backed up successfully", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Log.e(TAG, "MediaStore backup failed, trying with permissions", e);
+                        // If MediaStore fails, request permissions for legacy fallback
+                        if (isStoragePermissionGranted()) {
+                            try {
+                                appsManager.saveApk(packageName);
+                                Toast.makeText(getApplicationContext(), "APK backed up successfully", Toast.LENGTH_SHORT).show();
+                            } catch (Exception legacyEx) {
+                                Log.e(TAG, "Legacy backup also failed", legacyEx);
+                                Toast.makeText(getApplicationContext(), "Backup failed", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            // Request permissions
+                            pendingActionType = 2; // Mark as backup action pending
+                            requestStoragePermission();
+                        }
+                    }
+                } else if (Build.VERSION.SDK_INT >= 23) {
+                    // Android 6-10: Need permissions
+                    if (isStoragePermissionGranted()) {
+                        final AppsManager appsManager = new AppsManager(getApplicationContext());
+                        try {
+                            appsManager.saveApk(packageName);
+                            Toast.makeText(getApplicationContext(), "APK backed up successfully", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Log.e(TAG, "APK backup failed!!", e);
+                            Toast.makeText(getApplicationContext(), "Backup failed", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        pendingActionType = 2; // Mark as backup action pending
+                        requestStoragePermission();
+                    }
+                } else {
+                    // For older Android versions, permission is granted automatically
+                    final AppsManager appsManager = new AppsManager(getApplicationContext());
+                    try {
+                        appsManager.saveApk(packageName);
+                        Toast.makeText(getApplicationContext(), "App Backup Successfully", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
                         System.out.print("apk Extraction failed!!");
                     }
-                }else{
-                    Toast.makeText(getApplicationContext(), R.string.permissionError, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -278,22 +336,100 @@ public class AppInfoClass extends AppCompatActivity {
     }
 
     //run time permissions for Android M and higher versions
+    public  void requestStoragePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            Log.v(TAG,"Requesting storage permission");
+            
+            // Check if we should show rationale
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this, "Storage permission is needed to backup and share APKs", Toast.LENGTH_LONG).show();
+            }
+            
+            // Request both permissions
+            ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            }, STORAGE_PERMISSION_CODE);
+        }
+    }
+
     public  boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 Log.v(TAG,"Permission is granted");
                 return true;
             } else {
-
                 Log.v(TAG,"Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 return false;
             }
         }
         else { //permission is automatically granted on sdk<23 upon installation
-            Log.v(TAG,"Permission is granted");
+            Log.v(TAG,"Permission is granted (pre-M)");
             return true;
+        }
+    }
+
+    /**
+     * Check if we can perform backup without explicit permissions (Android 11+ MediaStore)
+     */
+    public boolean canBackupWithoutPermissions() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.R; // Android 11+
+    }
+
+    /**
+     * Handle the result of permission request
+     * When user grants/denies storage permission
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            // Check if both permissions were granted
+            boolean allPermissionsGranted = true;
+            if (grantResults.length >= 2) {
+                for (int result : grantResults) {
+                    if (result != PackageManager.PERMISSION_GRANTED) {
+                        allPermissionsGranted = false;
+                        break;
+                    }
+                }
+            } else {
+                allPermissionsGranted = false;
+            }
+            
+            if (allPermissionsGranted) {
+                Log.v(TAG, "All permissions granted");
+                
+                // Execute pending action based on what triggered the permission request
+                final AppsManager appsManager = new AppsManager(getApplicationContext());
+                
+                if (pendingActionType == 1) {
+                    // Pending share action
+                    try {
+                        appsManager.shareApk(pendingPackageName);
+                        pendingActionType = 0;
+                    } catch (Exception e) {
+                        Log.e(TAG, "APK Share failed!!", e);
+                        Toast.makeText(getApplicationContext(), "Share failed", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (pendingActionType == 2) {
+                    // Pending backup action
+                    try {
+                        appsManager.saveApk(pendingPackageName);
+                        Toast.makeText(getApplicationContext(), "APK backed up successfully", Toast.LENGTH_SHORT).show();
+                        pendingActionType = 0;
+                    } catch (Exception e) {
+                        Log.e(TAG, "APK Extraction failed!!", e);
+                        Toast.makeText(getApplicationContext(), "Backup failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            } else {
+                Log.v(TAG, "Permission denied - not all permissions granted");
+                Toast.makeText(getApplicationContext(), "Storage permission required. Cannot perform action.", Toast.LENGTH_SHORT).show();
+                pendingActionType = 0;
+            }
         }
     }
 

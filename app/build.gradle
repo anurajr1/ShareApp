@@ -4,10 +4,10 @@ android {
     compileSdkVersion 36
     defaultConfig {
         applicationId "com.anu.developers3k.shareapp"
-        minSdkVersion 23
+        minSdkVersion 29
         targetSdkVersion 36
-        versionCode 4
-        versionName "2.1.0"
+        versionCode 6
+        versionName "3.0.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {

@@ -1,7 +1,14 @@
 package com.anu.developers3k.shareapp.adapter;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,9 +16,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 
 public class SaveApp {
+	private Context context;
+	
+	public SaveApp(Context context) {
+		this.context = context;
+	}
+
 	public String extractWithoutRoot(ApplicationInfo info) throws Exception {
 		File src = new File(info.sourceDir);
 		File dst;
@@ -69,6 +83,65 @@ public class SaveApp {
 		}
 
 		return dst.getAbsolutePath();
+	}
+
+	/**
+	 * Extract APK using MediaStore API (Android 11+ compatible)
+	 * Saves to Downloads folder
+	 */
+	public String extractWithMediaStore(ApplicationInfo info) throws Exception {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) { // Android 10+
+			return extractWithMediaStoreAPI(info);
+		} else {
+			// Fallback to legacy method for older Android versions
+			return extractWithoutRoot(info);
+		}
+	}
+	
+	private String extractWithMediaStoreAPI(ApplicationInfo info) throws Exception {
+		ContentResolver resolver = context.getContentResolver();
+		ContentValues contentValues = new ContentValues();
+		
+		String fileName = info.packageName + ".apk";
+		String mimeType = "application/vnd.android.package-archive";
+		
+		contentValues.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
+		contentValues.put(MediaStore.Downloads.MIME_TYPE, mimeType);
+		contentValues.put(MediaStore.Downloads.IS_PENDING, 1);
+		
+		Uri collection = MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+		Uri itemUri = resolver.insert(collection, contentValues);
+		
+		if (itemUri == null) {
+			throw new Exception("Failed to create MediaStore entry");
+		}
+		
+		try (OutputStream outputStream = resolver.openOutputStream(itemUri);
+			 FileInputStream inputStream = new FileInputStream(info.sourceDir)) {
+			
+			if (outputStream == null) {
+				throw new Exception("Failed to open output stream");
+			}
+			
+			byte[] buffer = new byte[8192];
+			int bytesRead;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, bytesRead);
+			}
+			outputStream.flush();
+			
+		} catch (Exception e) {
+			// Clean up on failure
+			resolver.delete(itemUri, null, null);
+			throw new Exception("Failed to save APK: " + e.getMessage());
+		}
+		
+		// Mark as completed
+		contentValues.clear();
+		contentValues.put(MediaStore.Downloads.IS_PENDING, 0);
+		resolver.update(itemUri, contentValues, null, null);
+		
+		return itemUri.toString();
 	}
 
 	private void copy(File src, File dst) throws IOException {

@@ -4,7 +4,7 @@
     <string name="system_text">System Apps</string>
     <string name="user_text">User Apps</string>
     <string name="about">About Us</string>
-    <string name="version">Version 2.1.0</string>
+    <string name="version">Version 3.0.0</string>
 
     <string name="exit_msg">Please click BACK again to exit.</string>
 
@@ -15,6 +15,21 @@
     <string name="permissionError">Please enable the permission to use this functionality</string>
 
     <string name="interstitial_ad"></string>
+
+    <!-- Accessibility Strings -->
+    <string name="app_icon_description">Application icon</string>
+    <string name="open_app_description">Open application</string>
+    <string name="fab_menu_description">Action menu for app operations</string>
+    <string name="open_in_google_play">Open in Google Play Store</string>
+    <string name="share_apk_description">Share application APK</string>
+    <string name="backup_app_description">Backup application</string>
+    <string name="rate_app_description">Rate application</string>
+    <string name="more_apps_description">More applications</string>
+    <string name="share_app_description">Share application</string>
+    <string name="navigation_icon_description">Navigation item icon</string>
+    <string name="user_apps_list_description">List of installed user applications</string>
+    <string name="system_apps_list_description">List of system applications</string>
+    <string name="permissions_card_description">Application permissions and requirements</string>
 
     <dimen name="bottom_navigation_elevation">8dp</dimen>
 

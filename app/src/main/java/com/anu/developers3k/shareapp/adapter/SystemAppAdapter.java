@@ -76,6 +76,7 @@ public class SystemAppAdapter extends RecyclerView.Adapter<SystemAppAdapter.View
 
         // Set the current app icon
         holder.mImageViewIcon.setImageDrawable(icon);
+        holder.mImageViewIcon.setContentDescription(label);
 
 
         // Set a click listener on the open in app image view
@@ -97,6 +98,10 @@ public class SystemAppAdapter extends RecyclerView.Adapter<SystemAppAdapter.View
 
             }
         });
+        
+        // Set proper content descriptions for accessibility
+        holder.mCardView.setContentDescription(label);
+        holder.mImageOpenInApp.setContentDescription(mContext.getString(R.string.open_app_description) + ": " + label);
 
     }
 
