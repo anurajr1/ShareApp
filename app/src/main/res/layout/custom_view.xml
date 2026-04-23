@@ -21,8 +21,9 @@
             android:id="@+id/iv_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
-
+            android:contentDescription="@string/app_icon_description"
             />
+
         <TextView
             android:id="@+id/app_label"
             android:layout_width="wrap_content"
@@ -51,6 +52,10 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_system"
             android:layout_alignParentRight="true"
+            android:contentDescription="@string/open_app_description"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:scaleType="centerInside"
             />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -17,7 +17,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/bottom_navigation_margin_bottom"
         android:layout_marginTop="@dimen/bottom_navigation_margin_top_inactive"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:contentDescription="@string/navigation_icon_description"
+        android:importantForAccessibility="no"/>
 
     <TextView
         android:id="@+id/bottom_navigation_item_title"
@@ -30,7 +32,8 @@
         android:lines="1"
         android:textColor="@color/colorBottomNavigationInactive"
         android:textSize="@dimen/bottom_navigation_text_size_inactive"
-        tools:text="Label One"/>
+        tools:text="Label One"
+        android:importantForAccessibility="yes"/>
 
     <TextView
         android:id="@+id/bottom_navigation_notification"

@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
+        android:contentDescription="@string/user_apps_list_description"
         >
     </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

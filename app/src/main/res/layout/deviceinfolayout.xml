@@ -27,6 +27,7 @@
         android:layout_weight="0.30"
         android:text="Allowed"
         android:textSize="@dimen/app_detail_size"
-        android:fontFamily="sans-serif-condensed"/>
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/appTextColor"/>
     </LinearLayout>
 </RelativeLayout>
